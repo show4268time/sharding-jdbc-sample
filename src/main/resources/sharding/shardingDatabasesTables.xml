@@ -16,16 +16,16 @@
     
     <bean id="demo_ds_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/demo_ds_0"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
+        <property name="url" value="jdbc:mysql://192.168.159.39:3306/lbs_data?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
+        <property name="username" value="clover"/>
+        <property name="password" value="clover"/>
     </bean>
     
     <bean id="demo_ds_1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/demo_ds_1"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
+        <property name="url" value="jdbc:mysql://192.168.159.39:3306/lbs_data?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
+        <property name="username" value="clover"/>
+        <property name="password" value="clover"/>
     </bean>
 
     <bean id="preciseModuloDatabaseShardingAlgorithm" class="com.showtime.jdbc.fixtrue.algorithm.PreciseModuloDatabaseShardingAlgorithm" />

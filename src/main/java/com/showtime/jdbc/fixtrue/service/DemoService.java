@@ -17,10 +17,11 @@
 
 package com.showtime.jdbc.fixtrue.service;
 
-import io.shardingsphere.example.spring.namespace.mybatis.fixtrue.entity.Order;
-import io.shardingsphere.example.spring.namespace.mybatis.fixtrue.entity.OrderItem;
-import io.shardingsphere.example.spring.namespace.mybatis.fixtrue.repository.OrderItemRepository;
-import io.shardingsphere.example.spring.namespace.mybatis.fixtrue.repository.OrderRepository;
+
+import com.showtime.jdbc.fixtrue.entity.Order;
+import com.showtime.jdbc.fixtrue.entity.OrderItem;
+import com.showtime.jdbc.fixtrue.repository.OrderItemRepository;
+import com.showtime.jdbc.fixtrue.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
