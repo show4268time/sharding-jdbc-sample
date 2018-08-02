@@ -21,14 +21,14 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     
-    <bean id="demo_ds_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="lbs_data_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://192.168.159.39:3306/lbs_data?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
         <property name="username" value="clover"/>
         <property name="password" value="clover"/>
     </bean>
     
-    <bean id="demo_ds_1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <bean id="lbs_data_1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://192.168.159.39:3306/lbs_data?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"/>
         <property name="username" value="clover"/>
@@ -42,9 +42,9 @@
     <sharding:standard-strategy id="tableShardingStrategy" sharding-column="id" precise-algorithm-ref="preciseModuloTableShardingAlgorithm" />
     
     <sharding:data-source id="shardingDataSource">
-        <sharding:sharding-rule data-source-names="demo_ds_0, demo_ds_1">
+        <sharding:sharding-rule data-source-names="lbs_data_0, lbs_data_1">
             <sharding:table-rules>
-                <sharding:table-rule logic-table="business_bill" actual-data-nodes="demo_ds_${0..1}.business_bill_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column-name="id" />
+                <sharding:table-rule logic-table="business_bill" actual-data-nodes="lbs_data_${0..1}.business_bill_${0..1}" database-strategy-ref="databaseShardingStrategy" table-strategy-ref="tableShardingStrategy" generate-key-column-name="id" />
             </sharding:table-rules>
         </sharding:sharding-rule>
     </sharding:data-source>
