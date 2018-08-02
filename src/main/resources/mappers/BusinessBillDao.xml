@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.showtime.jdbc.businessbill.dao.BusinessBillDao">
+
+    <resultMap id="BaseResultMap" type="com.showtime.jdbc.businessbill.domain.BusinessBill">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="system_source" property="systemSource" jdbcType="VARCHAR"/>
+        <result column="order_type" property="orderType" jdbcType="VARCHAR"/>
+        <result column="transaction_type" property="transactionType" jdbcType="VARCHAR"/>
+        <result column="business_no" property="businessNo" jdbcType="VARCHAR"/>
+        <result column="context" property="context" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="exception_type" property="exceptionType" jdbcType="TINYINT"/>
+        <result column="exception_reason" property="exceptionReason" jdbcType="VARCHAR"/>
+        <result column="is_delete" property="isDelete" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="execute_count" property="executeCount" jdbcType="TINYINT"/>
+        <result column="queue_id" property="queueId" jdbcType="TINYINT"/>
+        <result column="seller_no" property="sellerNo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id,
+		system_source,
+		order_type,	
+		transaction_type,
+		business_no,
+		context,
+		status,
+		exception_type,
+		exception_reason,
+		is_delete,
+		create_time,
+		update_time,
+		create_user,
+		update_user,
+		execute_count,
+		queue_id,
+		seller_no
+	</sql>
+    <!-- 查询条件 -->
+    <sql id="whereCondition">
+        where is_delete = 0
+        <trim suffixOverrides=",">
+            <if test="condition.id != null">
+                and id = #{condition.id,jdbcType=BIGINT}
+            </if>
+
+            <if test="condition.systemSource != null and condition.systemSource !=''">
+                and system_source = #{condition.systemSource,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.orderType != null and condition.orderType !=''">
+                and order_type = #{condition.orderType,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.transactionType != null and condition.transactionType !=''">
+                and transaction_type = #{condition.transactionType,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.businessNo != null and condition.businessNo !=''">
+                and business_no = #{condition.businessNo,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.context != null and condition.context != ''">
+                and context = #{condition.context,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.status != null">
+                and status = #{condition.status,jdbcType=TINYINT}
+            </if>
+
+            <if test="condition.exceptionType != null">
+                and exception_type = #{condition.exceptionType,jdbcType=TINYINT}
+            </if>
+
+            <if test="condition.exceptionReason != null and condition.exceptionReason != ''">
+                and exception_reason = #{condition.exceptionReason,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.isDelete != null">
+                and is_delete = #{condition.isDelete,jdbcType=TINYINT}
+            </if>
+
+            <if test="condition.createTime != null">
+                and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="condition.updateTime != null">
+                and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="condition.createUser != null and condition.createUser !=''">
+                and create_user = #{condition.createUser,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.updateUser != null and condition.updateUser !=''">
+                and update_user = #{condition.updateUser,jdbcType=VARCHAR}
+            </if>
+
+            <if test="condition.executeCount != null">
+                and execute_count = #{condition.executeCount,jdbcType=TINYINT}
+            </if>
+
+            <if test="condition.queueId != null">
+                and queue_id = #{condition.queueId,jdbcType=TINYINT}
+            </if>
+            <if test="condition.queueIds != null">
+                and	queue_id in
+                <foreach item="item" index="index" collection="condition.queueIds" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="condition.ts != null">
+                and ts = #{condition.ts,jdbcType=TIMESTAMP}
+            </if>
+           <if test="condition.size != null">
+                limit  #{condition.size,jdbcType=INTEGER}
+            </if>
+
+            <if test="condition.sellerNo != null and condition.sellerNo !=''">
+                and seller_no = #{condition.sellerNo,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 单个插入，只插入不为空的字段  -->
+    <insert id="insert" parameterType="com.showtime.jdbc.businessbill.domain.BusinessBill">
+        insert into business_exception_bill
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="systemSource != null and systemSource != ''">
+                system_source,
+            </if>
+            <if test="orderType != null and orderType !=''">
+                order_type,
+            </if>
+            <if test="transactionType != null and transactionType !=''">
+                transaction_type,
+            </if>
+            <if test="businessNo != null and businessNo !=''">
+                business_no,
+            </if>
+            <if test="context != null  and context != '' ">
+                context,
+            </if>
+            <if test="status != null  ">
+                status,
+            </if>
+            <if test="exceptionType != null  ">
+                exception_type,
+            </if>
+            <if test="exceptionReason != null  and exceptionReason != '' ">
+                exception_reason,
+            </if>
+            <if test="isDelete != null  ">
+                is_delete,
+            </if>
+            <if test="createTime != null  ">
+                create_time,
+            </if>
+            <if test="updateTime != null  ">
+                update_time,
+            </if>
+            <if test="createUser != null and createUser !=''">
+                create_user,
+            </if>
+            <if test="updateUser != null and updateUser !=''">
+                update_user,
+            </if>
+            <if test="executeCount != null  ">
+                execute_count,
+            </if>
+            <if test="queueId != null  ">
+                queue_id,
+            </if>
+            <if test="sellerNo != null and sellerNo !=''">
+                seller_no,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="systemSource != null and systemSource !=''">
+                #{systemSource,jdbcType=VARCHAR},
+            </if>
+            <if test="orderType != null and orderType !=''">
+                #{orderType,jdbcType=VARCHAR},
+            </if>
+            <if test="transactionType != null and transactionType !=''">
+                #{transactionType,jdbcType=VARCHAR},
+            </if>
+            <if test="businessNo != null and businessNo !=''">
+                #{businessNo,jdbcType=VARCHAR},
+            </if>
+            <if test="context != null  and context != '' ">
+                #{context,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="exceptionType != null">
+                #{exceptionType,jdbcType=TINYINT},
+            </if>
+            <if test="exceptionReason != null  and exceptionReason != '' ">
+                #{exceptionReason,jdbcType=VARCHAR},
+            </if>
+            <if test="isDelete != null  ">
+                #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null  ">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null  ">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null and createUser !=''">
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null and updateUser !=''">
+                #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="executeCount != null ">
+                #{executeCount,jdbcType=TINYINT},
+            </if>
+            <if test="queueId != null">
+                #{queueId,jdbcType=TINYINT},
+            </if>
+            <if test="sellerNo != null and sellerNo !=''">
+                #{sellerNo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 修改记录，只修改只不为空的字段 -->
+    <update id="updateById" parameterType="com.showtime.jdbc.businessbill.domain.BusinessBill">
+        update business_exception_bill set
+        <trim suffixOverrides=",">
+            <if test="systemSource != null and systemSource !=''">
+                system_source = #{systemSource,jdbcType=VARCHAR},
+            </if>
+
+            <if test="orderType != null and orderType !=''">
+                order_type = #{orderType,jdbcType=VARCHAR},
+            </if>
+
+            <if test="transactionType != null and transactionType !=''">
+                transaction_type = #{transactionType,jdbcType=VARCHAR},
+            </if>
+            <if test="businessNo != null and businessNo !=''">
+                business_no = #{businessNo,jdbcType=VARCHAR},
+            </if>
+            <if test="context != null and context != ''">
+                context = #{context,jdbcType=VARCHAR},
+            </if>
+
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+
+            <if test="exceptionReason != null and exceptionReason != ''">
+                exception_reason = #{exceptionReason,jdbcType=VARCHAR},
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null and createUser !=''">
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null and updateUser !=''">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="executeCount != null">
+                execute_count = #{executeCount,jdbcType=TINYINT},
+            </if>
+
+            <if test="queueId != null">
+                queue_id = #{queueId,jdbcType=TINYINT},
+            </if>
+            <if test="sellerNo != null and sellerNo !=''">
+                seller_no = #{sellerNo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        where id=#{id,jdbcType=BIGINT} and is_delete = 0
+    </update>
+
+    <!-- 根据id查询 接数表 -->
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from business_exception_bill where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <!-- 根据条件查询列表 -->
+    <select id="findByCondition" resultMap="BaseResultMap"
+            parameterType="com.showtime.jdbc.businessbill.domain.BusinessBill">
+        select
+        <include refid="Base_Column_List"/>
+        from business_exception_bill
+        <include refid="whereCondition"/>
+    </select>
+
+</mapper>   
