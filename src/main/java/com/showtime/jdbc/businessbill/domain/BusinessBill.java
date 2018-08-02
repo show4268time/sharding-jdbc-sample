@@ -33,6 +33,11 @@ public class BusinessBill {
     private String transactionType;
 
     /**
+     * 商家编码
+     */
+    private String sellerNo;
+
+    /**
      * 业务单号
      */
     private String businessNo;
@@ -46,16 +51,6 @@ public class BusinessBill {
      * 状态
      */
     private Integer status;
-
-    /**
-     * 类型1手功抛出(业务异常)类型， 2 系统异常
-     */
-    private Integer exceptionType;
-
-    /**
-     * 异常原因
-     */
-    private String exceptionReason;
 
     /**
      * 1未删除0删除
@@ -83,55 +78,9 @@ public class BusinessBill {
     private String updateUser;
 
     /**
-     * 执行次数
-     */
-    private Integer executeCount;
-
-    /**
-     * worker执行队列
-     */
-    private Integer queueId;
-
-    /**
-     * 队列编号列表
-     */
-    private List<Integer> queueIds;
-    /**
      * 时间戳
      */
     private Date ts;
-
-    /**
-     * 异常任务处理处理条数
-     */
-    private Integer size;
-
-    /**
-     * 商家编码
-     */
-    private String sellerNo;
-
-    public BusinessBill() {
-    }
-
-    public BusinessBill(String exceptionReason) {
-        this.exceptionType = 0;
-        this.exceptionReason = "其它异常:" + exceptionReason;
-    }
-
-    public BusinessBill(String exceptionReason, String context) {
-        this.exceptionType = 0;
-        this.exceptionReason = "其它异常:" + exceptionReason;
-        this.context = context;
-    }
-
-    public BusinessBill(String systemSource, String orderType, String transactionType, Integer exceptionType, String exceptionReason) {
-        this.systemSource = systemSource;
-        this.orderType = orderType;
-        this.transactionType = transactionType;
-        this.exceptionType = exceptionType;
-        this.exceptionReason = exceptionReason;
-    }
 
     public Long getId() {
         return id;
@@ -189,22 +138,6 @@ public class BusinessBill {
         this.status = status;
     }
 
-    public Integer getExceptionType() {
-        return exceptionType;
-    }
-
-    public void setExceptionType(Integer exceptionType) {
-        this.exceptionType = exceptionType;
-    }
-
-    public String getExceptionReason() {
-        return exceptionReason;
-    }
-
-    public void setExceptionReason(String exceptionReason) {
-        this.exceptionReason = exceptionReason;
-    }
-
     public Integer getIsDelete() {
         return isDelete;
     }
@@ -245,44 +178,12 @@ public class BusinessBill {
         this.updateUser = updateUser;
     }
 
-    public Integer getExecuteCount() {
-        return executeCount;
-    }
-
-    public void setExecuteCount(Integer executeCount) {
-        this.executeCount = executeCount;
-    }
-
-    public Integer getQueueId() {
-        return queueId;
-    }
-
-    public void setQueueId(Integer queueId) {
-        this.queueId = queueId;
-    }
-
-    public List<Integer> getQueueIds() {
-        return queueIds;
-    }
-
-    public void setQueueIds(List<Integer> queueIds) {
-        this.queueIds = queueIds;
-    }
-
     public Date getTs() {
         return ts;
     }
 
     public void setTs(Date ts) {
         this.ts = ts;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
     }
 
     public String getSellerNo() {
